@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../AudioKit-4.9.5/Developer/iOS/iOSDevelopment/iOSDevelopment.xcodeproj">
+      location = "group:AudioKit/iOS/AudioKit For iOS.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Tunit.xcodeproj">

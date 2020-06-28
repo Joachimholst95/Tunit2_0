@@ -12,28 +12,10 @@
 		F70019BC1359E773A8B308CBADBE2042 /* Pods-Tunit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 80553945DDC5103CF408707182F4B86B /* Pods-Tunit-dummy.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		3C3F70E624A6282800072EB5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3C3F70E024A6282700072EB5 /* iOSDevelopment.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C4A008C91FD4DEBF004A91F4;
-			remoteInfo = iOSDevelopment;
-		};
-		3C3F70E824A6282800072EB5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3C3F70E024A6282700072EB5 /* iOSDevelopment.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C4AF13C120319FD6002E0FD8;
-			remoteInfo = iOSDevelopmentTests;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		00EE4BF89474F7B4990BA8DC2CBA89B2 /* Pods_Tunit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tunit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DE31DA8C4B0BEF941AAEDC92BAC29A /* Pods-Tunit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Tunit-Info.plist"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		3C3F70E024A6282700072EB5 /* iOSDevelopment.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = iOSDevelopment.xcodeproj; path = "../../AudioKit-4.9.5/Developer/iOS/iOSDevelopment/iOSDevelopment.xcodeproj"; sourceTree = "<group>"; };
 		3E242D9AB38060AA18913AD6DD586314 /* Pods-Tunit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Tunit-umbrella.h"; sourceTree = "<group>"; };
 		4F2843D419B6AA576F660E578FC10BD7 /* Pods-Tunit-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Tunit-acknowledgements.markdown"; sourceTree = "<group>"; };
 		80553945DDC5103CF408707182F4B86B /* Pods-Tunit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Tunit-dummy.m"; sourceTree = "<group>"; };
@@ -56,15 +38,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3C3F70E124A6282700072EB5 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3C3F70E724A6282800072EB5 /* iOSDevelopment.app */,
-				3C3F70E924A6282800072EB5 /* iOSDevelopmentTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		83146457CA6A0FA5A24E38E5104356A4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +65,6 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
-				3C3F70E024A6282700072EB5 /* iOSDevelopment.xcodeproj */,
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
 				83146457CA6A0FA5A24E38E5104356A4 /* Products */,
@@ -176,35 +148,12 @@
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			productRefGroup = 83146457CA6A0FA5A24E38E5104356A4 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3C3F70E124A6282700072EB5 /* Products */;
-					ProjectRef = 3C3F70E024A6282700072EB5 /* iOSDevelopment.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				4BB54B0C4B7BB84AB71C256ECD5AD3F1 /* Pods-Tunit */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3C3F70E724A6282800072EB5 /* iOSDevelopment.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = iOSDevelopment.app;
-			remoteRef = 3C3F70E624A6282800072EB5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3C3F70E924A6282800072EB5 /* iOSDevelopmentTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = iOSDevelopmentTests.xctest;
-			remoteRef = 3C3F70E824A6282800072EB5 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8FD825FD4300833921C009BFCF809A8A /* Resources */ = {
