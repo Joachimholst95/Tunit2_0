@@ -11,6 +11,8 @@ import AudioKitUI
 import AVFoundation
 import SoundAnalysis
 import CoreML
+import UIKit
+import SwiftUI
 
 class MainViewController : UIViewController {
 
@@ -26,25 +28,176 @@ class MainViewController : UIViewController {
     // Serial dispatch queue used to analyze incoming audio buffers.
     let analysisQueue = DispatchQueue(label: "fhooe.at.mc.holst")
     var resultsObserver: ResultsObserver!
-    var metronome: Metronome! = nil
+    var metronome: AKMetronome!
     var metronomeSpeedLabel: UILabel!
-
+    var mixer: AKMixer!
+    var frequencyMeterUIView: FrequencyMeter! = nil
+    var frequencyMeterControl: UIHostingController<FrequencyMeter>! = nil
     
+    @IBOutlet weak var SwiftUIVContainerView: UIView!
     @IBOutlet weak var higher_lower_button: UIButton!
     @IBOutlet weak var metronomeTickLabel: UILabel!
     @IBOutlet weak var metronomeSlider: UISlider!
     @IBOutlet public weak var instrumentLabel: UILabel!
     @IBOutlet weak var audioWaveView: AKNodeOutputPlot!
     @IBOutlet weak var frequencyLabel: UILabel!
-    @IBOutlet weak var amplitudeLabel: UILabel!
     @IBOutlet weak var noteLabelSharp: UILabel!
     @IBOutlet weak var noteLabelFlat: UILabel!
     @IBOutlet weak var noteFrequencyLabel: UILabel!
+    @IBOutlet weak var lowerNote: UILabel!
+    @IBOutlet weak var currentNote: UILabel!
+    @IBOutlet weak var higherNote: UILabel!
     
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
     let noteNamesWithFlats = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
 
+    let notes: [String: Double] = [
+      "C♯0":   17.32 ,
+    "D♭0":   17.32 ,
+     "D0":   18.35 ,
+    "D♯0":   19.45 ,
+    "E♭0":   19.45 ,
+     "E0":   20.60 ,
+     "F0":   21.83 ,
+    "F♯0":   23.12 ,
+    "G♭0":   23.12 ,
+     "G0":   24.50 ,
+    "G♯0":   25.96 ,
+    "A♭0":   25.96 ,
+     "A0":   27.50 ,
+    "A♯0":   29.14 ,
+    "♭♭0":   29.14 ,
+     "♭0":   30.87 ,
+     "C1":   32.70 ,
+    "C♯1":   34.65 ,
+    "D♭1":   34.65 ,
+     "D1":   36.71 ,
+    "D♯1":   38.89 ,
+    "E♭1":   38.89 ,
+     "E1":   41.20 ,
+     "F1":   43.65 ,
+    "F♯1":   46.25 ,
+    "G♭1":   46.25 ,
+     "G1":   49.00 ,
+    "G♯1":   51.91 ,
+    "A♭1":   51.91 ,
+     "A1":   55.00 ,
+    "A♯1":   58.27 ,
+    "♭♭1":   58.27 ,
+     "♭1":   61.74 ,
+     "C2":   65.41 ,
+    "C♯2":   69.30 ,
+    "D♭2":   69.30 ,
+     "D2":   73.42 ,
+    "D♯2":   77.78 ,
+    "E♭2":   77.78 ,
+     "E2":   82.41 ,
+     "F2":   87.31 ,
+    "F♯2":   92.50 ,
+    "G♭2":   92.50 ,
+     "G2":   98.00 ,
+    "G♯2":  103.83 ,
+    "A♭2":  103.83 ,
+     "A2":  110.00 ,
+    "A♯2":  116.54 ,
+    "♭♭2":  116.54 ,
+     "♭2":  123.47 ,
+     "C3":  130.81 ,
+    "C♯3":  138.59 ,
+    "D♭3":  138.59 ,
+     "D3":  146.83 ,
+    "D♯3":  155.56 ,
+    "E♭3":  155.56 ,
+     "E3":  164.81 ,
+     "F3":  174.61 ,
+    "F♯3":  185.00 ,
+    "G♭3":  185.00 ,
+     "G3":  196.00 ,
+    "G♯3":  207.65 ,
+    "A♭3":  207.65 ,
+     "A3":  220.00 ,
+    "A♯3":  233.08 ,
+    "♭♭3":  233.08 ,
+     "♭3":  246.94 ,
+     "C4":  261.63 ,
+    "C♯4":  277.18 ,
+    "D♭4":  277.18 ,
+     "D4":  293.66 ,
+    "D♯4":  311.13 ,
+    "E♭4":  311.13 ,
+     "E4":  329.63 ,
+     "F4":  349.23 ,
+    "F♯4":  369.99 ,
+    "G♭4":  369.99 ,
+     "G4":  392.00 ,
+    "G♯4":  415.30 ,
+    "A♭4":  415.30 ,
+     "A4":  440.00 ,
+    "A♯4":  466.16 ,
+    "♭♭4":  466.16 ,
+     "♭4":  493.88 ,
+     "C5":  523.25 ,
+    "C♯5":  554.37 ,
+    "D♭5":  554.37 ,
+     "D5":  587.33 ,
+    "D♯5":  622.25 ,
+    "E♭5":  622.25 ,
+     "E5":  659.26 ,
+     "F5":  698.46 ,
+    "F♯5":  739.99 ,
+    "G♭5":  739.99 ,
+     "G5":  783.99 ,
+    "G♯5":  830.61 ,
+    "A♭5":  830.61 ,
+     "A5":  880.00 ,
+    "A♯5":  932.33 ,
+    "♭♭5":  932.33 ,
+     "♭5":  987.77 ,
+     "C6": 1046.50 ,
+    "C♯6": 1108.73 ,
+    "D♭6": 1108.73 ,
+     "D6": 1174.66 ,
+    "D♯6": 1244.51 ,
+    "E♭6": 1244.51 ,
+     "E6": 1318.51 ,
+     "F6": 1396.91 ,
+    "F♯6": 1479.98 ,
+    "G♭6": 1479.98 ,
+     "G6": 1567.98 ,
+    "G♯6": 1661.22 ,
+    "A♭6": 1661.22 ,
+     "A6": 1760.00 ,
+    "A♯6": 1864.66 ,
+    "♭♭6": 1864.66 ,
+     "♭6": 1975.53 ,
+     "C7": 2093.00 ,
+    "C♯7": 2217.46 ,
+    "D♭7": 2217.46 ,
+     "D7": 2349.32 ,
+    "D♯7": 2489.02 ,
+    "E♭7": 2489.02 ,
+     "E7": 2637.02 ,
+     "F7": 2793.83 ,
+    "F♯7": 2959.96 ,
+    "G♭7": 2959.96 ,
+     "G7": 3135.96 ,
+    "G♯7": 3322.44 ,
+    "A♭7": 3322.44 ,
+     "A7": 3520.00 ,
+    "A♯7": 3729.31 ,
+    "♭♭7": 3729.31 ,
+     "♭7": 3951.07 ,
+     "C8": 4186.01 ,
+    "C♯8": 4434.92 ,
+    "D♭8": 4434.92 ,
+     "D8": 4698.64 ,
+    "D♯8": 4978.03 ,
+    "E♭8": 4978.03]
+    
+    var arr : Array<(key: String, value: Double)> = []
+    let arr2 : Array<Double> = []
+    
     fileprivate func setupSoundClasifier() {
         /*
          switch (AVAudioSession.sharedInstance().recordPermission) {
@@ -104,14 +257,20 @@ class MainViewController : UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        arr = Array(notes)
 
-        metronome = Metronome()
         AKSettings.audioInputEnabled = true
         AKSettings.sampleRate = AudioKit.engine.inputNode.inputFormat(forBus: 0).sampleRate
         mic = AKMicrophone()
         tracker = AKFrequencyTracker(mic)
         silence = AKBooster(tracker, gain: 0)
         
+        frequencyMeterUIView = FrequencyMeter()
+        frequencyMeterControl = UIHostingController(rootView: frequencyMeterUIView)
+        addChild(frequencyMeterControl)
+        SwiftUIVContainerView.addSubview(frequencyMeterControl.view)
+        frequencyMeterUIView.setAngle(angle: 50)
         setupSoundClasifier()
     }
 
@@ -132,14 +291,9 @@ class MainViewController : UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
 
-        AudioKit.output = silence
-        startAudiokit()
+        setupAudiokit()
         setupPlot()
-        
         setupMetronomeSpeedSliderLabel()
-        metronome.onTick = { (nextTick) in
-            self.animateTick()
-        }
         
         Timer.scheduledTimer(timeInterval: 0.1,
                              target: self,
@@ -169,12 +323,19 @@ class MainViewController : UIViewController {
     // MARK: - Metronome
     
     @IBAction func toggleMetronome(_ sender: Any) {
-        if metronome.enabled == true {
-            metronome.enabled = false
+        print(frequencyMeterUIView.getprogress())
+        frequencyMeterUIView.increaseAngle()
+        print(frequencyMeterUIView.getprogress())
+        if metronome.isPlaying {
+            metronome.stop()
+            metronome.reset()
         } else {
-            metronome.enabled = true
+            if !metronome.isStarted {
+                metronome.start()
+            }
+            metronome.reset()
+            metronome.restart()
         }
-        
     }
     
     private func animateTick() {
@@ -201,19 +362,26 @@ class MainViewController : UIViewController {
         }
     }
     
-    func restartAudiokit() {
+    func setupAudiokit() {
         AKSettings.audioInputEnabled = true
         AKSettings.sampleRate = AudioKit.engine.inputNode.inputFormat(forBus: 0).sampleRate
+        mixer = AKMixer()
         mic = AKMicrophone()
         tracker = AKFrequencyTracker(mic)
         silence = AKBooster(tracker, gain: 0)
-        AudioKit.output = silence
+        metronome = AKMetronome()
+        mixer.connect(input: silence)
+        mixer.connect(input: metronome)
+        AudioKit.output = mixer
         startAudiokit()
+        metronome.start()
+        metronome.stop()
+        metronome.reset()
     }
     
     
     @IBAction func metronomeSpeedChanged(_ sender: Any) {
-        metronome.bpm = metronomeSlider.value
+        metronome.tempo = Double(metronomeSlider.value)
         let temp: Int = Int(metronomeSlider.value)
         metronomeSpeedLabel.text = temp.description
     }
@@ -295,13 +463,24 @@ class MainViewController : UIViewController {
                     noteFrequencyLabel.text = ""
                 }
 
-
             }
-
-            noteLabelSharp.text = "\(noteNamesWithSharps[index])\(octave)"
-            noteLabelFlat.text = "\(noteNamesWithFlats[index])\(octave)"
+            
+            var minmumDistance: Double = 10000.0
+            for i in 0..<arr.count {
+                
+                let distance = arr[i].value - frequency
+                
+                if distance < minmumDistance {
+                    index = i
+                    minmumDistance = distance
+//                    print(distance)
+                }
+            }
+            
+//            frequencyMeterUIView.setAngle(angle: CGFloat(frequency))
+//            noteLabelSharp.text = "\(noteNamesWithSharps[index])\(octave)"
+//            noteLabelFlat.text = "\(noteNamesWithFlats[index])\(octave)"
         }
-        amplitudeLabel.text = String(format: "%0.2f", tracker.amplitude)
         instrumentLabel.text = resultsObserver.lastInstrumentDetection
     }
     

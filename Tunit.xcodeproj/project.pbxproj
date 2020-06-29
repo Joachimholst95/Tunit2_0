@@ -12,16 +12,14 @@
 		3C3F711424A7C5F700072EB5 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3F711224A7C5F700072EB5 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3C3F711924A8B1AE00072EB5 /* FrequencyMeter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F711824A8B1AE00072EB5 /* FrequencyMeter.swift */; };
 		3C3F711C24A8B4E600072EB5 /* AudioKitUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3C3F711A24A8B4E600072EB5 /* AudioKitUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		3C3F712424A917A100072EB5 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C3F712324A917A100072EB5 /* Test.swift */; };
 		3C4F032D249FBA39008C60E3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F032C249FBA39008C60E3 /* AppDelegate.swift */; };
 		3C4F032F249FBA39008C60E3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C4F032E249FBA39008C60E3 /* SceneDelegate.swift */; };
 		3C4F0334249FBA39008C60E3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0332249FBA39008C60E3 /* Main.storyboard */; };
 		3C4F0336249FBA39008C60E3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0335249FBA39008C60E3 /* Assets.xcassets */; };
 		3C4F0339249FBA39008C60E3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3C4F0337249FBA39008C60E3 /* LaunchScreen.storyboard */; };
 		3C5B0578249FBAD90057698D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5B0577249FBAD90057698D /* MainViewController.swift */; };
-		3C7BC97524A44F0100202224 /* around_the_world-atc.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3C7BC97424A44F0100202224 /* around_the_world-atc.wav */; };
 		3C900EFF24A205EA00D4A9FD /* InputDeviceTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C900EFE24A205EA00D4A9FD /* InputDeviceTableViewController.swift */; };
-		3CCCA58924A3D3D000500138 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCCA58824A3D3D000500138 /* Metronome.swift */; };
-		3CE328A824A42F47003330E8 /* metronome.wav in Resources */ = {isa = PBXBuildFile; fileRef = 3CE328A724A42F47003330E8 /* metronome.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +43,7 @@
 		3C3F711224A7C5F700072EB5 /* AudioKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C3F711824A8B1AE00072EB5 /* FrequencyMeter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencyMeter.swift; sourceTree = "<group>"; };
 		3C3F711A24A8B4E600072EB5 /* AudioKitUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AudioKitUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C3F712324A917A100072EB5 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		3C4F0329249FBA39008C60E3 /* Tunit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tunit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C4F032C249FBA39008C60E3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3C4F032E249FBA39008C60E3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -53,11 +52,8 @@
 		3C4F0338249FBA39008C60E3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3C4F033A249FBA39008C60E3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3C5B0577249FBAD90057698D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		3C7BC97424A44F0100202224 /* around_the_world-atc.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "around_the_world-atc.wav"; sourceTree = "<group>"; };
 		3C7BC97624A4934300202224 /* Tunit2_1.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = Tunit2_1.mlmodel; sourceTree = "<group>"; };
 		3C900EFE24A205EA00D4A9FD /* InputDeviceTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputDeviceTableViewController.swift; sourceTree = "<group>"; };
-		3CCCA58824A3D3D000500138 /* Metronome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Metronome.swift; sourceTree = "<group>"; };
-		3CE328A724A42F47003330E8 /* metronome.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = metronome.wav; sourceTree = "<group>"; };
 		52E987E76567B81E6660ABDF /* Pods-Tunit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tunit.release.xcconfig"; path = "Target Support Files/Pods-Tunit/Pods-Tunit.release.xcconfig"; sourceTree = "<group>"; };
 		ECA271DE930A4C6894A10A51 /* Pods-Tunit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tunit.debug.xcconfig"; path = "Target Support Files/Pods-Tunit/Pods-Tunit.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,7 +84,6 @@
 		3C4F0320249FBA39008C60E3 = {
 			isa = PBXGroup;
 			children = (
-				3C3F711824A8B1AE00072EB5 /* FrequencyMeter.swift */,
 				3C4F032B249FBA39008C60E3 /* Tunit */,
 				3C4F032A249FBA39008C60E3 /* Products */,
 				3CCCA58A24A3EC5100500138 /* Recources */,
@@ -108,8 +103,7 @@
 		3C4F032B249FBA39008C60E3 /* Tunit */ = {
 			isa = PBXGroup;
 			children = (
-				3C7BC97424A44F0100202224 /* around_the_world-atc.wav */,
-				3CE328A724A42F47003330E8 /* metronome.wav */,
+				3C3F711824A8B1AE00072EB5 /* FrequencyMeter.swift */,
 				3C7BC97624A4934300202224 /* Tunit2_1.mlmodel */,
 				3C900EFE24A205EA00D4A9FD /* InputDeviceTableViewController.swift */,
 				3C4F032C249FBA39008C60E3 /* AppDelegate.swift */,
@@ -119,7 +113,7 @@
 				3C4F0337249FBA39008C60E3 /* LaunchScreen.storyboard */,
 				3C4F033A249FBA39008C60E3 /* Info.plist */,
 				3C5B0577249FBAD90057698D /* MainViewController.swift */,
-				3CCCA58824A3D3D000500138 /* Metronome.swift */,
+				3C3F712324A917A100072EB5 /* Test.swift */,
 			);
 			path = Tunit;
 			sourceTree = "<group>";
@@ -200,11 +194,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3C7BC97524A44F0100202224 /* around_the_world-atc.wav in Resources */,
 				3C4F0339249FBA39008C60E3 /* LaunchScreen.storyboard in Resources */,
 				3C4F0336249FBA39008C60E3 /* Assets.xcassets in Resources */,
 				3C4F0334249FBA39008C60E3 /* Main.storyboard in Resources */,
-				3CE328A824A42F47003330E8 /* metronome.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,10 +232,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3CCCA58924A3D3D000500138 /* Metronome.swift in Sources */,
 				210B80C024A8BB54004B1ED7 /* Tunit2_1.mlmodel in Sources */,
 				3C4F032D249FBA39008C60E3 /* AppDelegate.swift in Sources */,
 				3C4F032F249FBA39008C60E3 /* SceneDelegate.swift in Sources */,
+				3C3F712424A917A100072EB5 /* Test.swift in Sources */,
 				3C5B0578249FBAD90057698D /* MainViewController.swift in Sources */,
 				3C3F711924A8B1AE00072EB5 /* FrequencyMeter.swift in Sources */,
 				3C900EFF24A205EA00D4A9FD /* InputDeviceTableViewController.swift in Sources */,
