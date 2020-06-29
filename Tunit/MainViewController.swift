@@ -36,7 +36,6 @@ class MainViewController : UIViewController {
     
     @IBOutlet weak var SwiftUIVContainerView: UIView!
     @IBOutlet weak var higher_lower_button: UIButton!
-    @IBOutlet weak var metronomeTickLabel: UILabel!
     @IBOutlet weak var metronomeSlider: UISlider!
     @IBOutlet public weak var instrumentLabel: UILabel!
     @IBOutlet weak var audioWaveView: AKNodeOutputPlot!
@@ -45,221 +44,168 @@ class MainViewController : UIViewController {
     @IBOutlet weak var noteLabelFlat: UILabel!
     @IBOutlet weak var noteFrequencyLabel: UILabel!
     @IBOutlet weak var lowerNote: UILabel!
+    @IBOutlet weak var secondLowerNote: UILabel!
     @IBOutlet weak var currentNote: UILabel!
+    @IBOutlet weak var secondCurrentNote: UILabel!
     @IBOutlet weak var higherNote: UILabel!
+    @IBOutlet weak var secondHigherNote: UILabel!
     
     let noteFrequencies = [16.35, 17.32, 18.35, 19.45, 20.6, 21.83, 23.12, 24.5, 25.96, 27.5, 29.14, 30.87]
     let noteNamesWithSharps = ["C", "C♯", "D", "D♯", "E", "F", "F♯", "G", "G♯", "A", "A♯", "B"]
     let noteNamesWithFlats = ["C", "D♭", "D", "E♭", "E", "F", "G♭", "G", "A♭", "A", "B♭", "B"]
 
     let notes: [String: Double] = [
-      "C♯0":   17.32 ,
-    "D♭0":   17.32 ,
-     "D0":   18.35 ,
-    "D♯0":   19.45 ,
-    "E♭0":   19.45 ,
-     "E0":   20.60 ,
-     "F0":   21.83 ,
-    "F♯0":   23.12 ,
-    "G♭0":   23.12 ,
-     "G0":   24.50 ,
-    "G♯0":   25.96 ,
-    "A♭0":   25.96 ,
-     "A0":   27.50 ,
-    "A♯0":   29.14 ,
-    "♭♭0":   29.14 ,
-     "♭0":   30.87 ,
-     "C1":   32.70 ,
-    "C♯1":   34.65 ,
-    "D♭1":   34.65 ,
-     "D1":   36.71 ,
-    "D♯1":   38.89 ,
-    "E♭1":   38.89 ,
-     "E1":   41.20 ,
-     "F1":   43.65 ,
-    "F♯1":   46.25 ,
-    "G♭1":   46.25 ,
-     "G1":   49.00 ,
-    "G♯1":   51.91 ,
-    "A♭1":   51.91 ,
-     "A1":   55.00 ,
-    "A♯1":   58.27 ,
-    "♭♭1":   58.27 ,
-     "♭1":   61.74 ,
-     "C2":   65.41 ,
-    "C♯2":   69.30 ,
-    "D♭2":   69.30 ,
-     "D2":   73.42 ,
-    "D♯2":   77.78 ,
-    "E♭2":   77.78 ,
-     "E2":   82.41 ,
-     "F2":   87.31 ,
-    "F♯2":   92.50 ,
-    "G♭2":   92.50 ,
-     "G2":   98.00 ,
-    "G♯2":  103.83 ,
-    "A♭2":  103.83 ,
-     "A2":  110.00 ,
-    "A♯2":  116.54 ,
-    "♭♭2":  116.54 ,
-     "♭2":  123.47 ,
-     "C3":  130.81 ,
-    "C♯3":  138.59 ,
-    "D♭3":  138.59 ,
-     "D3":  146.83 ,
-    "D♯3":  155.56 ,
-    "E♭3":  155.56 ,
-     "E3":  164.81 ,
-     "F3":  174.61 ,
-    "F♯3":  185.00 ,
-    "G♭3":  185.00 ,
-     "G3":  196.00 ,
-    "G♯3":  207.65 ,
-    "A♭3":  207.65 ,
-     "A3":  220.00 ,
-    "A♯3":  233.08 ,
-    "♭♭3":  233.08 ,
-     "♭3":  246.94 ,
-     "C4":  261.63 ,
-    "C♯4":  277.18 ,
-    "D♭4":  277.18 ,
-     "D4":  293.66 ,
-    "D♯4":  311.13 ,
-    "E♭4":  311.13 ,
-     "E4":  329.63 ,
-     "F4":  349.23 ,
-    "F♯4":  369.99 ,
-    "G♭4":  369.99 ,
-     "G4":  392.00 ,
-    "G♯4":  415.30 ,
-    "A♭4":  415.30 ,
-     "A4":  440.00 ,
-    "A♯4":  466.16 ,
-    "♭♭4":  466.16 ,
-     "♭4":  493.88 ,
-     "C5":  523.25 ,
-    "C♯5":  554.37 ,
-    "D♭5":  554.37 ,
-     "D5":  587.33 ,
-    "D♯5":  622.25 ,
-    "E♭5":  622.25 ,
-     "E5":  659.26 ,
-     "F5":  698.46 ,
-    "F♯5":  739.99 ,
-    "G♭5":  739.99 ,
-     "G5":  783.99 ,
-    "G♯5":  830.61 ,
-    "A♭5":  830.61 ,
-     "A5":  880.00 ,
-    "A♯5":  932.33 ,
-    "♭♭5":  932.33 ,
-     "♭5":  987.77 ,
-     "C6": 1046.50 ,
-    "C♯6": 1108.73 ,
-    "D♭6": 1108.73 ,
-     "D6": 1174.66 ,
-    "D♯6": 1244.51 ,
-    "E♭6": 1244.51 ,
-     "E6": 1318.51 ,
-     "F6": 1396.91 ,
-    "F♯6": 1479.98 ,
-    "G♭6": 1479.98 ,
-     "G6": 1567.98 ,
-    "G♯6": 1661.22 ,
-    "A♭6": 1661.22 ,
-     "A6": 1760.00 ,
-    "A♯6": 1864.66 ,
-    "♭♭6": 1864.66 ,
-     "♭6": 1975.53 ,
-     "C7": 2093.00 ,
-    "C♯7": 2217.46 ,
-    "D♭7": 2217.46 ,
-     "D7": 2349.32 ,
-    "D♯7": 2489.02 ,
-    "E♭7": 2489.02 ,
-     "E7": 2637.02 ,
-     "F7": 2793.83 ,
-    "F♯7": 2959.96 ,
-    "G♭7": 2959.96 ,
-     "G7": 3135.96 ,
-    "G♯7": 3322.44 ,
-    "A♭7": 3322.44 ,
-     "A7": 3520.00 ,
-    "A♯7": 3729.31 ,
-    "♭♭7": 3729.31 ,
-     "♭7": 3951.07 ,
-     "C8": 4186.01 ,
-    "C♯8": 4434.92 ,
-    "D♭8": 4434.92 ,
-     "D8": 4698.64 ,
-    "D♯8": 4978.03 ,
-    "E♭8": 4978.03]
+                                    "C♯0":   17.32 ,
+                                    "D♭0":   17.32 ,
+                                     "D0":   18.35 ,
+                                    "D♯0":   19.45 ,
+                                    "E♭0":   19.45 ,
+                                     "E0":   20.60 ,
+                                     "F0":   21.83 ,
+                                    "F♯0":   23.12 ,
+                                    "G♭0":   23.12 ,
+                                     "G0":   24.50 ,
+                                    "G♯0":   25.96 ,
+                                    "A♭0":   25.96 ,
+                                     "A0":   27.50 ,
+                                    "A♯0":   29.14 ,
+                                    "B♭0":   29.14 ,
+                                     "B0":   30.87 ,
+                                     "C1":   32.70 ,
+                                    "C♯1":   34.65 ,
+                                    "D♭1":   34.65 ,
+                                     "D1":   36.71 ,
+                                    "D♯1":   38.89 ,
+                                    "E♭1":   38.89 ,
+                                     "E1":   41.20 ,
+                                     "F1":   43.65 ,
+                                    "F♯1":   46.25 ,
+                                    "G♭1":   46.25 ,
+                                     "G1":   49.00 ,
+                                    "G♯1":   51.91 ,
+                                    "A♭1":   51.91 ,
+                                     "A1":   55.00 ,
+                                    "A♯1":   58.27 ,
+                                    "B♭1":   58.27 ,
+                                     "B1":   61.74 ,
+                                     "C2":   65.41 ,
+                                    "C♯2":   69.30 ,
+                                    "D♭2":   69.30 ,
+                                     "D2":   73.42 ,
+                                    "D♯2":   77.78 ,
+                                    "E♭2":   77.78 ,
+                                     "E2":   82.41 ,
+                                     "F2":   87.31 ,
+                                    "F♯2":   92.50 ,
+                                    "G♭2":   92.50 ,
+                                     "G2":   98.00 ,
+                                    "G♯2":  103.83 ,
+                                    "A♭2":  103.83 ,
+                                     "A2":  110.00 ,
+                                    "A♯2":  116.54 ,
+                                    "♭♭2":  116.54 ,
+                                     "♭2":  123.47 ,
+                                     "C3":  130.81 ,
+                                    "C♯3":  138.59 ,
+                                    "D♭3":  138.59 ,
+                                     "D3":  146.83 ,
+                                    "D♯3":  155.56 ,
+                                    "E♭3":  155.56 ,
+                                     "E3":  164.81 ,
+                                     "F3":  174.61 ,
+                                    "F♯3":  185.00 ,
+                                    "G♭3":  185.00 ,
+                                     "G3":  196.00 ,
+                                    "G♯3":  207.65 ,
+                                    "A♭3":  207.65 ,
+                                     "A3":  220.00 ,
+                                    "A♯3":  233.08 ,
+                                    "B♭3":  233.08 ,
+                                     "B3":  246.94 ,
+                                     "C4":  261.63 ,
+                                    "C♯4":  277.18 ,
+                                    "D♭4":  277.18 ,
+                                     "D4":  293.66 ,
+                                    "D♯4":  311.13 ,
+                                    "E♭4":  311.13 ,
+                                     "E4":  329.63 ,
+                                     "F4":  349.23 ,
+                                    "F♯4":  369.99 ,
+                                    "G♭4":  369.99 ,
+                                     "G4":  392.00 ,
+                                    "G♯4":  415.30 ,
+                                    "A♭4":  415.30 ,
+                                     "A4":  440.00 ,
+                                    "A♯4":  466.16 ,
+                                    "B♭4":  466.16 ,
+                                     "B4":  493.88 ,
+                                     "C5":  523.25 ,
+                                    "C♯5":  554.37 ,
+                                    "D♭5":  554.37 ,
+                                     "D5":  587.33 ,
+                                    "D♯5":  622.25 ,
+                                    "E♭5":  622.25 ,
+                                     "E5":  659.26 ,
+                                     "F5":  698.46 ,
+                                    "F♯5":  739.99 ,
+                                    "G♭5":  739.99 ,
+                                     "G5":  783.99 ,
+                                    "G♯5":  830.61 ,
+                                    "A♭5":  830.61 ,
+                                     "A5":  880.00 ,
+                                    "A♯5":  932.33 ,
+                                    "B♭5":  932.33 ,
+                                     "B5":  987.77 ,
+                                     "C6": 1046.50 ,
+                                    "C♯6": 1108.73 ,
+                                    "D♭6": 1108.73 ,
+                                     "D6": 1174.66 ,
+                                    "D♯6": 1244.51 ,
+                                    "E♭6": 1244.51 ,
+                                     "E6": 1318.51 ,
+                                     "F6": 1396.91 ,
+                                    "F♯6": 1479.98 ,
+                                    "G♭6": 1479.98 ,
+                                     "G6": 1567.98 ,
+                                    "G♯6": 1661.22 ,
+                                    "A♭6": 1661.22 ,
+                                     "A6": 1760.00 ,
+                                    "A♯6": 1864.66 ,
+                                    "B♭6": 1864.66 ,
+                                     "B6": 1975.53 ,
+                                     "C7": 2093.00 ,
+                                    "C♯7": 2217.46 ,
+                                    "D♭7": 2217.46 ,
+                                     "D7": 2349.32 ,
+                                    "D♯7": 2489.02 ,
+                                    "E♭7": 2489.02 ,
+                                     "E7": 2637.02 ,
+                                     "F7": 2793.83 ,
+                                    "F♯7": 2959.96 ,
+                                    "G♭7": 2959.96 ,
+                                     "G7": 3135.96 ,
+                                    "G♯7": 3322.44 ,
+                                    "A♭7": 3322.44 ,
+                                     "A7": 3520.00 ,
+                                    "A♯7": 3729.31 ,
+                                    "B♭7": 3729.31 ,
+                                     "B7": 3951.07 ,
+                                     "C8": 4186.01 ,
+                                    "C♯8": 4434.92 ,
+                                    "D♭8": 4434.92 ,
+                                     "D8": 4698.64 ,
+                                    "D♯8": 4978.03 ,
+                                    "E♭8": 4978.03]
     
-    var arr : Array<(key: String, value: Double)> = []
+    var noteArray : Array<(key: String, value: Double)> = []
     let arr2 : Array<Double> = []
-    
-    fileprivate func setupSoundClasifier() {
-        /*
-         switch (AVAudioSession.sharedInstance().recordPermission) {
-         case .granted: // The user has previously granted access to the microphone.
-         print("")
-         //                  self.startAudio()
-         case .undetermined: // The user has not yet been asked for recording access.
-         print("")
-         case .denied: // The user has previously denied access.
-         print("recording acces denied")
-         }
-         */
-        
-        model = instrumentClassifier.model
-        
-        // Create a new audio engine.
-        audioEngine = AVAudioEngine()
-        
-        startAudioEngine()
-        
-        instrumentClassifier = Tunit2_1()
-        // Do any additional setup after loading the view.
-        
-        // Get the native audio format of the engine's input bus.
-        inputBus = AVAudioNodeBus(0)
-        inputFormat = audioEngine.inputNode.inputFormat(forBus: inputBus)
-        
-        // Create a new stream analyzer.
-        streamAnalyzer = SNAudioStreamAnalyzer(format: inputFormat)
-        
-        // Create a new observer that will be notified of analysis results.
-        // Keep a strong reference to this object.
-        resultsObserver = ResultsObserver()
-        
-        do {
-            // Prepare a new request for the trained model.
-            let request = try SNClassifySoundRequest(mlModel: model)
-            try streamAnalyzer.add(request, withObserver: resultsObserver)
-        } catch {
-            print("Unable to prepare request: \(error.localizedDescription)")
-            return
-        }
-        
-        // Install an audio tap on the audio engine's input node.
-        audioEngine.inputNode.installTap(onBus: inputBus,
-                                         bufferSize: 8192, // 8k buffer
-        format: inputFormat) { buffer, time in
-            
-            // Analyze the current audio buffer.
-            self.analysisQueue.async {
-                if (self.tracker.amplitude > 0.05) {
-                    self.streamAnalyzer.analyze(buffer, atAudioFramePosition: time.sampleTime)
-                }
-            }
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arr = Array(notes)
-
+        secondCurrentNote.text = ""
+        noteArray = Array(notes)
+        
         AKSettings.audioInputEnabled = true
         AKSettings.sampleRate = AudioKit.engine.inputNode.inputFormat(forBus: 0).sampleRate
         mic = AKMicrophone()
@@ -335,13 +281,6 @@ class MainViewController : UIViewController {
             }
             metronome.reset()
             metronome.restart()
-        }
-    }
-    
-    private func animateTick() {
-        metronomeTickLabel.alpha = 1.0
-        UIView.animate(withDuration: 0.35) {
-            self.metronomeTickLabel.alpha = 0.0
         }
     }
     
@@ -464,28 +403,169 @@ class MainViewController : UIViewController {
                 }
 
             }
+//            frequencyMeterUIView.setAngle(angle: CGFloat(frequency))
+            noteLabelSharp.text = "\(noteNamesWithSharps[index])\(octave)"
+            noteLabelFlat.text = "\(noteNamesWithFlats[index])\(octave)"
             
-            var minmumDistance: Double = 10000.0
-            for i in 0..<arr.count {
-                
-                let distance = arr[i].value - frequency
-                
-                if distance < minmumDistance {
+            var minimumDistance: Double = 2000.0
+//            print(tracker.frequency)
+//            print(arr[index].value)
+            
+            let frequencyArray = noteArray.map { $1.value() }
+            minDistance = 100
+            
+            for i in 0..<frequencyArray.count {
+                //distance between the note and the frequency in percent
+                let distance = Double(fabsf(Float(frequencyArray[i] - tracker.frequency)))
+                //when correct note found
+                if distance < minimumDistance{
                     index = i
-                    minmumDistance = distance
-//                    print(distance)
+                    minimumDistance = distance
                 }
             }
             
-//            frequencyMeterUIView.setAngle(angle: CGFloat(frequency))
-//            noteLabelSharp.text = "\(noteNamesWithSharps[index])\(octave)"
-//            noteLabelFlat.text = "\(noteNamesWithFlats[index])\(octave)"
+//            print(noteArray[index])
+//            print(abs(noteArray[index].value - tracker.frequency))
+//            print(minimumDistance)
+            
+
+            
+            var tempLowerNote = 1 //1 stands for position not changed
+            var tempHigherNote = 1 //1 stands for position not changed
+            
+            //current note
+            currentNote.text = noteArray[index].key
+            //check if lower Note has the same frequency
+            if index - 1 > 0 {
+                if noteArray[index - 1].value == noteArray[index].value {
+                    tempLowerNote = 2
+                    secondCurrentNote.text = noteArray[index - 1].key
+                }
+            }
+            //check if higher Note has the same frequency
+            if index + 1 < noteArray.count {
+                if noteArray[index + 1].value == noteArray[index].value {
+                    tempHigherNote = 2
+                    secondCurrentNote.text = noteArray[index - 1].key
+                }
+            }
+            
+            
+            //set lower note
+            if index - tempLowerNote > 0 {
+                lowerNote.text = noteArray[index - tempLowerNote].key
+                //if next lower Note is on the same frequency
+                if index - tempLowerNote - 1 > 0 && noteArray[index - tempLowerNote].value == noteArray[index - tempLowerNote - 1].value {
+                    
+                    secondLowerNote.text = noteArray[index - tempLowerNote - 1].key
+                } else {
+                    secondLowerNote.text = ""
+                }
+            }
+            
+            //set higher note
+            if index + tempHigherNote < noteArray.count {
+                higherNote.text = noteArray[index + tempHigherNote].key
+                //if next higher Note is on the same frequency
+                if index + tempHigherNote + 1 < noteArray.count && noteArray[index + tempHigherNote].value == noteArray[index + tempHigherNote + 1].value {
+                    
+                    secondHigherNote.text = noteArray[index + tempHigherNote + 1].key
+                    print(noteArray[index + tempHigherNote + 1].key)
+                } else {
+                    secondHigherNote.text = ""
+                }
+            }
+            if noteArray[index].value < tracker.frequency {         //lower frequency
+                if index - 1 > -1 {
+                    let difference = abs(noteArray[index].value - noteArray[index - tempLowerNote].value)
+//                    print(minimumDistance/difference)
+                    print(Int(minimumDistance))
+                } else {                                            //no lower note
+                    
+                }
+            } else if noteArray[index].value > tracker.frequency {  //higher frequency
+                if index + 1 < noteArray.count {
+                    let difference = abs(noteArray[index].value - noteArray[index + tempHigherNote].value)
+//                    print(difference/minimumDistance)
+                    print(Int(minimumDistance))
+                } else {                                            //no higher note
+                    
+                }
+            } else {
+                print("exact frequency")
+                frequencyMeterUIView.setAngle(angle: 50)
+            }
         }
         instrumentLabel.text = resultsObserver.lastInstrumentDetection
     }
     
+    func closestMatch(values: [Double], inputValue: Double) -> Double? {
+        return (values.reduce(values[0]) { abs($0-inputValue) < abs($1-inputValue) ? $0 : $1 })
+    }
+    
+    func closestMatch2(values: [Double], inputValue: Double) -> Double? {
+        return (values.reduce(values[0]) { abs($0-inputValue) < abs($1-inputValue) ? $0 : $1 })
+    }
+    
     func setInstrument(instrument : String) {
         instrumentLabel.text = instrument
+    }
+    
+    fileprivate func setupSoundClasifier() {
+        /*
+         switch (AVAudioSession.sharedInstance().recordPermission) {
+         case .granted: // The user has previously granted access to the microphone.
+         print("")
+         //                  self.startAudio()
+         case .undetermined: // The user has not yet been asked for recording access.
+         print("")
+         case .denied: // The user has previously denied access.
+         print("recording acces denied")
+         }
+         */
+        
+        model = instrumentClassifier.model
+        
+        // Create a new audio engine.
+        audioEngine = AVAudioEngine()
+        
+        startAudioEngine()
+        
+        instrumentClassifier = Tunit2_1()
+        // Do any additional setup after loading the view.
+        
+        // Get the native audio format of the engine's input bus.
+        inputBus = AVAudioNodeBus(0)
+        inputFormat = audioEngine.inputNode.inputFormat(forBus: inputBus)
+        
+        // Create a new stream analyzer.
+        streamAnalyzer = SNAudioStreamAnalyzer(format: inputFormat)
+        
+        // Create a new observer that will be notified of analysis results.
+        // Keep a strong reference to this object.
+        resultsObserver = ResultsObserver()
+        
+        do {
+            // Prepare a new request for the trained model.
+            let request = try SNClassifySoundRequest(mlModel: model)
+            try streamAnalyzer.add(request, withObserver: resultsObserver)
+        } catch {
+            print("Unable to prepare request: \(error.localizedDescription)")
+            return
+        }
+        
+        // Install an audio tap on the audio engine's input node.
+        audioEngine.inputNode.installTap(onBus: inputBus,
+                                         bufferSize: 8192, // 8k buffer
+        format: inputFormat) { buffer, time in
+            
+            // Analyze the current audio buffer.
+            self.analysisQueue.async {
+                if (self.tracker.amplitude > 0.05) {
+                    self.streamAnalyzer.analyze(buffer, atAudioFramePosition: time.sampleTime)
+                }
+            }
+        }
     }
 }
 

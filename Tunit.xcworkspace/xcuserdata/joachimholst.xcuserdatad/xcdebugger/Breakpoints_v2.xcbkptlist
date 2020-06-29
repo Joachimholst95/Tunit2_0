@@ -14,8 +14,8 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "443"
-            endingLineNumber = "443"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
             landmarkName = "updateUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "425"
-            endingLineNumber = "425"
+            startingLineNumber = "364"
+            endingLineNumber = "364"
             landmarkName = "updateUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "302"
-            endingLineNumber = "302"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "viewDidAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -62,8 +62,8 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "424"
-            endingLineNumber = "424"
+            startingLineNumber = "363"
+            endingLineNumber = "363"
             landmarkName = "updateUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -78,10 +78,10 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "496"
-            endingLineNumber = "496"
-            landmarkName = "ResultsObserver"
-            landmarkType = "3">
+            startingLineNumber = "576"
+            endingLineNumber = "576"
+            landmarkName = "lastInstrumentDetection"
+            landmarkType = "24">
             <Locations>
                <Location
                   uuid = "F6898873-C230-4D0E-A064-B73C746ACC5B - 7e310fe542a47c03"
@@ -156,8 +156,8 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "446"
-            endingLineNumber = "446"
+            startingLineNumber = "385"
+            endingLineNumber = "385"
             landmarkName = "updateUI()"
             landmarkType = "7">
          </BreakpointContent>
@@ -172,24 +172,10 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "508"
-            endingLineNumber = "508"
+            startingLineNumber = "588"
+            endingLineNumber = "588"
             landmarkName = "request(_:didProduce:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3EFAD63E-789B-4520-A175-C05DE1D87C46"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Tunit/MainViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "572"
-            endingLineNumber = "572">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -234,8 +220,8 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "312"
-            endingLineNumber = "312"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "startAudioEngine()"
             landmarkType = "7">
          </BreakpointContent>
@@ -250,8 +236,8 @@
             filePath = "Tunit/MainViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "334"
-            endingLineNumber = "334"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "toggleMetronome(_:)"
             landmarkType = "7">
          </BreakpointContent>

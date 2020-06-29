@@ -115,7 +115,7 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
 {
     self.shouldCenterYAxis = YES;
     self.shouldOptimizeForRealtimePlot = YES;
-    self.gain = 2.0;
+    self.gain = 1.0;
     self.plotType = EZPlotTypeBuffer;
     self.shouldMirror = NO;
     self.shouldFill = NO;
