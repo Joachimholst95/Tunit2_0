@@ -269,9 +269,9 @@ class MainViewController : UIViewController {
     // MARK: - Metronome
     
     @IBAction func toggleMetronome(_ sender: Any) {
-        print(frequencyMeterUIView.getprogress())
+//        print(frequencyMeterUIView.getprogress())
         frequencyMeterUIView.increaseAngle()
-        print(frequencyMeterUIView.getprogress())
+//        print(frequencyMeterUIView.getprogress())
         if metronome.isPlaying {
             metronome.stop()
             metronome.reset()
@@ -479,7 +479,7 @@ class MainViewController : UIViewController {
                 if index - 1 > -1 {
                     let difference = abs(noteArray[index].value - noteArray[index - tempLowerNote].value)
 //                    print(minimumDistance/difference)
-                    print(Int(minimumDistance))
+//                    print(Int(minimumDistance))
                 } else {                                            //no lower note
                     
                 }
@@ -487,7 +487,7 @@ class MainViewController : UIViewController {
                 if index + 1 < noteArray.count {
                     let difference = abs(noteArray[index].value - noteArray[index + tempHigherNote].value)
 //                    print(difference/minimumDistance)
-                    print(Int(minimumDistance))
+//                    print(Int(minimumDistance))
                 } else {                                            //no higher note
                     
                 }

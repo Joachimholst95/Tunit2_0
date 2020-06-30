@@ -80,8 +80,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "576"
             endingLineNumber = "576"
-            landmarkName = "lastInstrumentDetection"
-            landmarkType = "24">
+            landmarkName = "ResultsObserver"
+            landmarkType = "3">
             <Locations>
                <Location
                   uuid = "F6898873-C230-4D0E-A064-B73C746ACC5B - 7e310fe542a47c03"
@@ -239,6 +239,86 @@
             startingLineNumber = "280"
             endingLineNumber = "280"
             landmarkName = "toggleMetronome(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9BAEC94-F536-4FC3-B73D-E94F195E44D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tunit/FrequencyMeter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "setAngle(angle:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9A85137A-AFF9-46F5-A090-343183870353"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tunit/FrequencyMeter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "increaseAngle()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9A85137A-AFF9-46F5-A090-343183870353 - 83da3c44cbea8287"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Tunit.FrequencyMeter.increaseAngle() -&gt; ()"
+                  moduleName = "Tunit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joachimholst/Documents/Studium/ADI/Tunit2_0/Tunit/FrequencyMeter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "66"
+                  endingLineNumber = "66"
+                  offsetFromSymbolStart = "59">
+               </Location>
+               <Location
+                  uuid = "9A85137A-AFF9-46F5-A090-343183870353 - 7ede4a3855584939"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Tunit.FrequencyMeter.increaseAngle() -&gt; ()"
+                  moduleName = "Tunit"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/joachimholst/Documents/Studium/ADI/Tunit2_0/Tunit/FrequencyMeter.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "67"
+                  endingLineNumber = "67"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B854B617-20D1-41D9-AA3D-61D3524330F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Tunit/FrequencyMeter.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "increaseAngle()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
