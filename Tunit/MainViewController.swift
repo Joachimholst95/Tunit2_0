@@ -198,13 +198,22 @@ class MainViewController : UIViewController {
                                     "E♭8": 4978.03]
     
     var noteArray : Array<(key: String, value: Double)> = []
-    let arr2 : Array<Double> = []
+    var arr2 : Array<Note> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         secondCurrentNote.text = ""
-        noteArray = Array(notes)
+        let sortedDict = notes.sorted { $0.1 < $1.1 }
+        for (key, value) in sortedDict {
+            noteArray.append((key, value))
+        }
+        
+        for (key, value) in notes {
+            arr2.append(Note(frequency: value, name: key))
+        }
+//        arr2.sort(by: <#T##(Note, Note) throws -> Bool#>)
+        
         
         AKSettings.audioInputEnabled = true
         AKSettings.sampleRate = AudioKit.engine.inputNode.inputFormat(forBus: 0).sampleRate
@@ -269,9 +278,6 @@ class MainViewController : UIViewController {
     // MARK: - Metronome
     
     @IBAction func toggleMetronome(_ sender: Any) {
-//        print(frequencyMeterUIView.getprogress())
-        frequencyMeterUIView.increaseAngle()
-//        print(frequencyMeterUIView.getprogress())
         if metronome.isPlaying {
             metronome.stop()
             metronome.reset()
@@ -411,7 +417,8 @@ class MainViewController : UIViewController {
 //            print(tracker.frequency)
 //            print(arr[index].value)
             
-            let frequencyArray = noteArray.map { $1.value() }
+            var frequencyArray = noteArray.map { $1.value() }
+//            frequencyArray.sorted(by: { $0.value() < $1.
             minDistance = 100
             
             for i in 0..<frequencyArray.count {
@@ -440,6 +447,8 @@ class MainViewController : UIViewController {
                 if noteArray[index - 1].value == noteArray[index].value {
                     tempLowerNote = 2
                     secondCurrentNote.text = noteArray[index - 1].key
+                } else {
+                    secondCurrentNote.text = ""
                 }
             }
             //check if higher Note has the same frequency
@@ -470,32 +479,46 @@ class MainViewController : UIViewController {
                 if index + tempHigherNote + 1 < noteArray.count && noteArray[index + tempHigherNote].value == noteArray[index + tempHigherNote + 1].value {
                     
                     secondHigherNote.text = noteArray[index + tempHigherNote + 1].key
-                    print(noteArray[index + tempHigherNote + 1].key)
                 } else {
                     secondHigherNote.text = ""
                 }
             }
-            if noteArray[index].value < tracker.frequency {         //lower frequency
-                if index - 1 > -1 {
-                    let difference = abs(noteArray[index].value - noteArray[index - tempLowerNote].value)
-//                    print(minimumDistance/difference)
-//                    print(Int(minimumDistance))
+            
+            if tracker.frequency < noteArray[index].value {         //lower frequency
+                if index - tempLowerNote > -1 {
+                    
+                    let noteDistance = abs(noteArray[index].value - noteArray[index - tempLowerNote].value)
+                    let difference = tracker.frequency - noteArray[index].value
+
+                    if tracker.frequency < noteArray[index].value - noteDistance / 2 {
+                        frequencyMeterUIView.setAngle(angle: CGFloat(30 + 20/(noteDistance/2) * difference))
+                    } else if tracker.frequency > noteArray[index].value - noteDistance / 2 {
+                        frequencyMeterUIView.setAngle(angle: CGFloat(30 + 20/(noteDistance/2) * difference))
+                    }
                 } else {                                            //no lower note
                     
                 }
-            } else if noteArray[index].value > tracker.frequency {  //higher frequency
-                if index + 1 < noteArray.count {
-                    let difference = abs(noteArray[index].value - noteArray[index + tempHigherNote].value)
-//                    print(difference/minimumDistance)
-//                    print(Int(minimumDistance))
+            } else if tracker.frequency > noteArray[index].value {  //higher frequency
+                if index + tempHigherNote < noteArray.count {
+                    let noteDistance = abs(noteArray[index].value - noteArray[index + tempHigherNote].value)
+                    let difference = tracker.frequency - noteArray[index].value
+
+                    
+                    if tracker.frequency < noteArray[index].value + noteDistance / 2 {
+                        frequencyMeterUIView.setAngle(angle: CGFloat(50 + 20/(noteDistance/2) * difference))
+                    } else if tracker.frequency > noteArray[index].value + noteDistance / 2 {
+                        frequencyMeterUIView.setAngle(angle: CGFloat(50 + 20/(noteDistance/2) * difference))
+                    }
+                    
                 } else {                                            //no higher note
                     
                 }
             } else {
                 print("exact frequency")
-                frequencyMeterUIView.setAngle(angle: 50)
+//                frequencyMeterUIView.setArrow(63)
             }
         }
+//        frequencyMeterUIView.increaseAngle()
         instrumentLabel.text = resultsObserver.lastInstrumentDetection
     }
     
@@ -648,4 +671,15 @@ extension MainViewController: InputDeviceDelegate {
             AKLog("Error setting input device")
         }
     }
+}
+
+struct Note {
+    let frequency : Double
+    let name : String
+    
+    init(frequency: Double, name: String) {
+        self.frequency = frequency
+        self.name = name
+    }
+    
 }

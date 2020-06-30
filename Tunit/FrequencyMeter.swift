@@ -9,65 +9,17 @@
 import SwiftUI
 
 struct FrequencyMeter: View {
-    @State var progress : CGFloat = 15
+    @ObservedObject var progress : FrequencyMeterAngle = FrequencyMeterAngle.init(value: 4.5)
     let colors = [Color("Color_Meter_red"), Color("Color_Meter_green"),
     Color.gray]
     
     var body: some View {
-//        VStack {
-//            Meter(progress: self.$progress)
-            
-            
-//            @Binding var progress : CGFloat
-            
+        
         VStack {
-                ZStack {
-                    ZStack {
-                        Circle()
-                            .trim(from: 0.02, to: 0.48)
-                            .stroke(Color.black.opacity(0.1), lineWidth: 10)
-                            .frame(width: 300, height: 300)
-                        
-                        Circle()
-        //                    .trim(from: 0.02, to: 0.48)
-                            .trim(from: 0.02, to: setProgress())
-                            .stroke(AngularGradient(gradient: Gradient(colors: [Color("Color_Meter_red"), Color("Color_Meter_red"), Color("Color_Meter_red"), Color("Color_Meter_green"), Color("Color_Meter_red")]), center: .center, angle: .init(degrees: 180)), lineWidth: 20)
-                            .frame(width: 320, height: 320)
-                    }
-                    .rotationEffect(.init(degrees: 180))
-                    
-                    ZStack(alignment: .bottom) {
-                        
-                        self.colors[2]
-                        .frame(width: 2, height: 120)
-                        
-                        Circle()
-                            .fill(self.colors[2])
-                            .frame(width: 15, height: 15)
-                    }
-                    .offset(y: -60)
-                    .rotationEffect(.init(degrees: -90))
-                    .rotationEffect(.init(degrees: setArrow()))
-
-                    ZStack(alignment: .bottom) {
-                        Path { path in
-                            path.move(to: CGPoint(x: 44, y: 0))
-                            path.addLine(to: CGPoint(x: 88, y: 60))
-                        }
-                        .stroke(Color.red, lineWidth: 2.0)
-                       
-                        Path { path in
-                            path.move(to: CGPoint(x: 276, y: 0))
-                            path.addLine(to: CGPoint(x: 232, y: 60))
-                        }
-                        .stroke(Color.red, lineWidth: 2.0)
-                    }
-                }
-                .frame(width: 320, height: 320, alignment: .bottom)
+                
+            Meter(progress: $progress.value)
             
-            
-
-            
+            /*
             HStack(spacing: 25){
                 
                 Button(action: {
@@ -107,39 +59,39 @@ struct FrequencyMeter: View {
                 .background(Capsule().stroke(LinearGradient(gradient: Gradient(colors: [Color("Color_Meter_red"), Color("Color_Meter_red"), Color("Color_Meter_red"), Color("Color_Meter_green"), Color("Color_Meter_red")]), startPoint: .leading, endPoint: .trailing), lineWidth: 2))
             }
             .padding(.top, 55)
+ */
         }
+ 
         
     }
 
     func setAngle(angle: CGFloat) {
-//        withAnimation(Animation.default.speed(0.55)){
-        print(self.progress)
-            progress = angle
-        print(progress)
-//
-//        }
+        withAnimation(Animation.default.speed(0.55)){
+            progress.value = angle
+        }
     }
     func increaseAngle() {
         print(progress)
         withAnimation(Animation.default.speed(0.55)){
-            progress += 10
+            progress.value += 10
                     print(progress)
 
         }
         print(progress)
     }
+    
     func getprogress() -> CGFloat {
-        return self.progress
+        return self.progress.value
     }
     
     func setProgress()->CGFloat{
         
-        let temp = progress / 2
+        let temp = progress.value / 2
         return temp * 0.01
     }
     
     func setArrow()->Double{
-        let temp = progress / 100
+        let temp = progress.value / 100
         return Double(temp * 180)
     }
 }
@@ -165,8 +117,8 @@ struct Meter : View {
                     .frame(width: 300, height: 300)
                 
                 Circle()
-//                    .trim(from: 0.02, to: 0.48)
-                    .trim(from: 0.02, to: self.setProgress())
+                    .trim(from: 0.02, to: 0.48)
+//                    .trim(from: 0.02, to: self.setProgress())
                     .stroke(AngularGradient(gradient: Gradient(colors: [Color("Color_Meter_red"), Color("Color_Meter_red"), Color("Color_Meter_red"), Color("Color_Meter_green"), Color("Color_Meter_red")]), center: .center, angle: .init(degrees: 180)), lineWidth: 20)
                     .frame(width: 320, height: 320)
             }
@@ -211,5 +163,17 @@ struct Meter : View {
     func setArrow()->Double{
         let temp = self.progress / 100
         return Double(temp * 180)
+    }
+}
+
+class FrequencyMeterAngle: ObservableObject {
+    @Published var value: CGFloat = 0
+
+    func setValue(value: CGFloat) {
+        self.value = value
+    }
+    
+    init(value: CGFloat) {
+        self.value = value
     }
 }
