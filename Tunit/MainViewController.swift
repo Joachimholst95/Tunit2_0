@@ -32,6 +32,7 @@ class MainViewController : UIViewController {
     var metronomeSpeedLabel: UILabel!
     var mixer: AKMixer!
     var frequencyMeterUIView: FrequencyMeter! = nil
+    
     var frequencyMeterControl: UIHostingController<FrequencyMeter>! = nil
     
     @IBOutlet weak var SwiftUIVContainerView: UIView!
@@ -388,6 +389,8 @@ class MainViewController : UIViewController {
             var minDistance: Float = 10_000.0
             var index = 0
 
+            
+            // old system --------------- delete once replaced
             let octave = Int(log2f(trackerFrequency / frequency))
             for i in 0..<noteFrequencies.count {
                 //distance between the note and the frequency in percent
@@ -404,6 +407,7 @@ class MainViewController : UIViewController {
                         higher_lower_button.setImage(UIImage.init(systemName: "arrow.up"), for: .normal)
                     }
                 }
+                
                 if temp - tracker.frequency < -200 || temp - tracker.frequency > 200 {
                     noteFrequencyLabel.text = ""
                 }
@@ -451,8 +455,12 @@ class MainViewController : UIViewController {
                     secondCurrentNote.text = ""
                 }
             }
+            
+            frequencyMeterUIView.setNote(note: noteArray[index].key, _position: 1)
+            print(noteArray[index].key)
+            
             //check if higher Note has the same frequency
-            if index + 1 < noteArray.count {
+            if index + 1 < noteArray.count && index > 0 {
                 if noteArray[index + 1].value == noteArray[index].value {
                     tempHigherNote = 2
                     secondCurrentNote.text = noteArray[index - 1].key
@@ -508,6 +516,7 @@ class MainViewController : UIViewController {
                         frequencyMeterUIView.setAngle(angle: CGFloat(50 + 20/(noteDistance/2) * difference))
                     } else if tracker.frequency > noteArray[index].value + noteDistance / 2 {
                         frequencyMeterUIView.setAngle(angle: CGFloat(50 + 20/(noteDistance/2) * difference))
+                        
                     }
                     
                 } else {                                            //no higher note
